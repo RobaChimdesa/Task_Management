@@ -3,4 +3,5 @@ from .models import Task,Catagory
 # Register your models here.
 
 
-# admin.site.register(Task,Catagory)
+# admin.site.register(Task)
+# admin.site.register(Catagory)
