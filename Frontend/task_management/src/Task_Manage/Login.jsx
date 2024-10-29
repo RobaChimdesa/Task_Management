@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios'
 // import {useNavigate} from 'react-router-dom';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -9,7 +9,7 @@ const Login = () =>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -19,11 +19,12 @@ const Login = () =>{
         })
         .then((response) => {
             localStorage.setItem('token', response.data.access);
-            // navigate('/tasks');
+            navigate('/tasks');
             console.log('success')
         })
         .catch(()=>{
             setError("Invalid username or password");
+            console.log('no login')
         })
     };
 
