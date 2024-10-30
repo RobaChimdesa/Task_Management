@@ -2,16 +2,15 @@ import { useState } from 'react'
 import Login from './Task_Manage/Login'
 import './App.css'
 import AllPage from './Task_Manage/AllPage'
+import Home from './Task_Manage/HomePage/Home'
 function App() {
 
   return (
-    <>
-     
-      <AllPage/> 
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='bg-slate-50' >
+      <Home/>
+      {/* <AllPage/>  */}
+      
+    </div>
   )
 }
 
