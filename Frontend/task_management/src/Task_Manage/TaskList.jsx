@@ -18,6 +18,8 @@ const TaskList = () => {
     api.get("/tasks/")
       .then((response) => {
         setTasks(response.data);
+        console.log(response.data)
+        console.log('connected')
       })
       .catch((error) => {
         console.error("Error fetching tasks:", error);
@@ -43,6 +45,15 @@ const TaskList = () => {
   // Handle new task submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formattedDeadline = newTask.deadline ? new Date(newTask.deadline).toISOString().split("T")[0]:null
+    console.log(newTask); 
+    const taskData = {
+      title: newTask.title,
+      description: newTask.description,
+      deadline: formattedDeadline,  // Send the correctly formatted deadline
+      category: newTask.category,    // Ensure category is the ID
+      completed: false,      
+         };
     api.post("/tasks/", newTask)
       .then((response) => {
         setTasks([...tasks, response.data]);
@@ -54,9 +65,14 @@ const TaskList = () => {
         });
       })
       .catch((error) => {
-        console.error("Error creating task:", error);
-        console.log('not')
-      });
+        if (error.response) {
+          console.error("Error response from server:", error.response.data); // Log the error from the backend
+        } else if (error.request) {
+          console.error("Error: No response received from server", error.request); // No response was received
+        } else {
+          console.error("Error setting up request:", error.message); // Error during request setup
+        }
+        });
   };
 
   // Mark task as completed
