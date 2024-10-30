@@ -76,7 +76,7 @@ const Login = () => {
       .then((response) => {
         localStorage.setItem("access_token", response.data.access);
         localStorage.setItem("refresh_token", response.data.refresh);
-        navigate("/tasks"); // Redirect to tasks after successful login
+        navigate("/categories"); // Redirect to tasks after successful login
       })
       .catch((error) => {
         setError("Invalid username or password.");

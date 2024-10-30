@@ -38,4 +38,6 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Catagory
         fields = '__all__'  # fields = '__all__' means all fields of the
+        read_only_fields = ('user',)
+
     

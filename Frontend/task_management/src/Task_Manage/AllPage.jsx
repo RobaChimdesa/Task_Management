@@ -4,6 +4,7 @@ import SignUp from "./SignUo";
 import Login from "./Login";
 import TaskList from "./TaskList";
 import ProtectedRoute from "./ProtectedRoute";
+import CategoryList from "./categorie";
 
 
 function AllPage(){
@@ -12,6 +13,7 @@ function AllPage(){
            <Routes>
            <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/categories" element ={<CategoryList/>}/>
             {/* <Route path="/home" element={<ProtectedRoute />} /> */}
             <Route
                path="/tasks" element={
