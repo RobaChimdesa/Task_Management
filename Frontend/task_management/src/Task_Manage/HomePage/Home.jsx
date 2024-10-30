@@ -4,6 +4,8 @@ import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
 import AllPage from "../AllPage";
+import Signup from "../SignUo";
+import Login from "../Login";
 
 const Home = () =>{
     return(
@@ -13,7 +15,7 @@ const Home = () =>{
                 <Route path="/" element={< Body/>}/>
                 <Route path="/about" element={<Body/>}/>
                 <Route path="/contact" element={<Body/>}/>
-                <Route path="/signup" element={<AllPage/>}/>
+                <Route path="/signup" element={<Login/>}/>
             </Routes>
             <Footer/>
         </Router>

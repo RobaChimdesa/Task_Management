@@ -85,17 +85,20 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+       Login
+      </h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
+          <label className="block text-gray-600 font-medium mb-1">Username:</label>
           <input
             type="text"
             value={formData.username}
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
-          />
+            className="  className="w-full px-4 py-2 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+            
         </div>
         <div>
           <label>Password:</label>
