@@ -77,12 +77,24 @@ const TaskList = () => {
 
   // Mark task as completed
   const handleComplete = (id) => {
-    api.put(`/tasks/${id}/`, { completed: true })
-      .then(() => {
+    const updatedTaskData = {  
+      title: "Updated Task Title",  
+      description: "Updated Task Description",};
+    api.put(`/tasks/${id}/`, updatedTaskData)
+      .then((response) => {
+
         fetchTasks(); // Refresh the task list
+        console.log("Task updated successfully:", response.data);  
+        
       })
       .catch((error) => {
-        console.error(`Error marking task ${id} as complete:`, error);
+        if (error.response) {
+          console.error("Error response from server:", error.response.data); // Log the error from the backend
+        } else if (error.request) {
+          console.error("Error: No response received from server", error.request); // No response was received
+        } else {
+          console.error("Error setting up request:", error.message); // Error during request setup
+        }
       });
   };
 
