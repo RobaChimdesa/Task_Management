@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -121,9 +122,15 @@ const Signup = () => {
         </div>
 
         <button type="submit"
-         className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition duration-200"
+         className="w-full bg-slate-300 text-black hover:text-white hover:bg-slate-600 py-2 rounded-md font-semibold  transition duration-200"
      
          >Sign Up</button>
+         <p className="text-center text-gray-600 mt-4">
+        Already have an account?{' '}
+        <Link to="/login" className="text-blue-500 hover:underline">
+          Log in
+        </Link>
+      </p> 
       </form>
 
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}

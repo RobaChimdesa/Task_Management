@@ -64,7 +64,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "./api";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
@@ -84,11 +84,12 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div  className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg
+    shadow-lg mb-24">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
        Login
       </h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label className="block text-gray-600 font-medium mb-1">Username:</label>
@@ -97,19 +98,32 @@ const Login = () => {
             value={formData.username}
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
-            className="  className="w-full px-4 py-2 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            
+            className="w-full px-4 py-2 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+           />  
         </div>
         <div>
-          <label>Password:</label>
+          <label  className="block text-gray-600 font-medium mb-1" >Password:</label>
           <input
             type="password"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
+            className="w-full px-4 py-2 border rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" 
+         className="w-full bg-slate-300 text-black hover:text-white hover:bg-slate-600 py-2 rounded-md font-semibold  transition duration-200 
+         mt-16"
+     
+        >Login</button>
+        <p className="text-center text-gray-600 mt-4">
+       did't have an account?{' '}
+        <Link to="/signup" className="text-blue-500 hover:underline">
+          signup
+        </Link>
+      </p>
       </form>
     </div>
   );
