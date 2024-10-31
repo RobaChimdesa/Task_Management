@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from "react";
 import api from "./api";
+import { Link } from "react-router-dom";
 
 const CategoryList = () =>{
     const [categories, setCategories] = useState([]);
     const [newCategory,setNewCategory] = useState("");
-
+    const [addCategoy,setAddCategory] = useState(false)
+    const [changepage,setChangepage] = useState(false)
     const fetchCategories = () =>{
         api.get("/categories")
         .then((response) => {
@@ -40,29 +42,54 @@ const CategoryList = () =>{
           });
       };
 
+      const handleAddCategory = () =>{
+        setAddCategory(!addCategoy)
+      }
+      const handleChangepage = () =>{
+        setChangepage(!changepage)
+      }
+
       return (
-        <div>
-          <h2>Category List</h2>
-          <ul>
-            {categories.map((category) => (
-              <li key={category.id}>{category.name}</li>
-            ))}
-          </ul>
-    
-          <h3>Create a New Category</h3>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Category Name:</label>
-              <input
-                type="text"
-                value={newCategory}
-                onChange={(e) => setNewCategory(e.target.value)}
-                required
-              />
-            </div>
-            <button type="submit">Add Category</button>
-          </form>
-        </div>
+        <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">  
+        <button onClick={handleChangepage} className="bg-blue-600 w-1/4 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none 
+  focus:ring-2 focus:ring-blue-500">
+      {changepage ? <Link to="/categorylist">see your category</Link>:<Link to="/tasks">see your task</Link>}
+     </button>
+  <h2 className="text-xl font-semibold mb-4">Category List</h2>  
+  <ul className="list-disc list-inside mb-4">  
+    {categories.map((category) => (  
+      <li key={category.id} className="text-gray-900 mb-5 flex items-center justify-between">  
+        <span>{category.name}</span>  
+        <div>  
+          <button className="ml-2 text-white px-4 py-1 rounded-2xl bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300">Edit</button>  
+          <button className="ml-2 text-white px-4 py-1 rounded-2xl bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-300">Delete</button>  
+        </div>  
+      </li>  
+    ))}  
+  </ul>  
+  <button  onClick={handleAddCategory} 
+  className="bg-blue-600 w-1/3 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none 
+  focus:ring-2 focus:ring-blue-500">{addCategoy ? 'cancel':'Add Category'}</button>
+  {addCategoy && <div><h3 className="text-lg font-semibold mb-2">Create a New Category</h3>  
+  <form onSubmit={handleSubmit} className="space-y-4">  
+    <div>  
+      <label className="block text-sm font-medium text-gray-700">Category Name:</label>  
+      <input  
+        type="text"  
+        value={newCategory}  
+        onChange={(e) => setNewCategory(e.target.value)}  
+        required  
+        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 p-2"  
+      />  
+    </div>  
+    <button  
+      type="submit"  
+      className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"  
+    >  
+      Add Category  
+    </button>  
+  </form>  </div>}
+</div>
       );
 
 }

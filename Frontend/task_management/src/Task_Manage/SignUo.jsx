@@ -55,7 +55,7 @@ const Signup = () => {
   return (
     <div
       className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg
-    shadow-lg"
+    shadow-lg" 
     >
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
         Sign Up

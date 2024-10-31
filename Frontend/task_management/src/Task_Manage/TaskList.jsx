@@ -1,7 +1,7 @@
 // TaskList.js
 import React, { useState, useEffect } from "react";
 import api from "./api";
-
+import { Link } from "react-router-dom";
 const TaskList = () => {
   const [addTask,setAddTask] = useState(false)
   const [tasks, setTasks] = useState([]);
@@ -11,6 +11,7 @@ const TaskList = () => {
     deadline: "",
     category: "",
   });
+  const [changepage,setChangepage] = useState(true)
 
   const [categories, setCategories] = useState([]);
 
@@ -114,8 +115,16 @@ const TaskList = () => {
     setAddTask(!addTask)
   }
 
+  const handleChangepage = () =>{
+    setChangepage(!changepage)
+  }
+
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+      <button onClick={handleChangepage} className="bg-blue-600 w-1/4 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none 
+  focus:ring-2 focus:ring-blue-500">
+      {changepage ? <Link to="/categorylist">see your category</Link>:<Link to="/tasks">see your task</Link>}
+     </button>
   <h2 className="text-2xl font-semibold text-gray-800 mb-4">Task List</h2>
   <ul className="space-y-4">
     {tasks.map((task) => (

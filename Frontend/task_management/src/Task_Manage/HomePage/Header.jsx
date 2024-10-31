@@ -3,12 +3,12 @@ import logo from "../../assets/logo.jpeg";
 function Header() {
   return (
     <div className=" text-black font-serif text-xl">
-      <header className="max-w-screen-lg mx-auto flex justify-between items-center p-4 ">
+      <header className="max-w-screen-lg mx-auto flex justify-end md:justify-between items-center p-4 ">
         <div>
           <img
             src={logo}
             alt="Logo"
-            className="w-16 h-12 shadow-lg m-4 rounded-full"
+            className="w-16 h-12 shadow-lg m-4 hidden md:block rounded-full"
           />
         </div>
         <nav className="flex items-center space-x-4 md:ml-16">
@@ -38,7 +38,7 @@ function Header() {
         </nav>
         <Link
           to="/signup"
-          className="bg-slate-300  text-black text-xl px-1 md:px-4 py-1 md:py-2 rounded-full hover:bg-slate-600 hover:text-white transition-all"
+          className="bg-slate-300  text-black md:text-xl text-sm px-4 md:px-4 py-0 md:py-2 rounded-full hover:bg-slate-600 hover:text-white transition-all"
         >
           Sign Up
         </Link>
