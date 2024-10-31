@@ -38,7 +38,7 @@ function Header() {
         </nav>
         <Link
           to="/signup"
-          className="bg-slate-300  text-black px-4 py-2 rounded-full hover:bg-slate-600 hover:text-white transition-all"
+          className="bg-slate-300  text-black text-xl px-1 md:px-4 py-1 md:py-2 rounded-full hover:bg-slate-600 hover:text-white transition-all"
         >
           Sign Up
         </Link>

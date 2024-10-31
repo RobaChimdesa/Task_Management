@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import api from "./api";
 
 const TaskList = () => {
+  const [addTask,setAddTask] = useState(false)
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
     title: "",
@@ -109,73 +110,119 @@ const TaskList = () => {
       });
   };
 
-  return (
-    <div>
-      <h2>Task List</h2>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <h4>{task.title}</h4>
-            <p>{task.description}</p>
-            <p>Category: {task.category}</p>
-            <p>Deadline: {task.deadline}</p>
-            <p>Status: {task.completed ? "Completed" : "Pending"}</p>
-            {!task.completed && (
-              <button onClick={() => handleComplete(task.id)}>Mark as Complete</button>
-            )}
-            <button onClick={() => handleDelete(task.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+  const handTask = () =>{
+    setAddTask(!addTask)
+  }
 
-      <h3>Create a New Task</h3>
-      <form onSubmit={handleSubmit}>
+  return (
+    <div className="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+  <h2 className="text-2xl font-semibold text-gray-800 mb-4">Task List</h2>
+  <ul className="space-y-4">
+    {tasks.map((task) => (
+      <li
+        key={task.id}
+        className="p-4 bg-gray-100 rounded-md shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between"
+      >
         <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={newTask.title}
-            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-            required
-          />
+          <h4 className="text-lg font-medium text-gray-900">{task.title}</h4>
+          <p className="text-gray-700">{task.description}</p>
+          <p className="text-sm text-gray-600">Category: {task.category}</p>
+          <p className="text-sm text-gray-600">Deadline: {task.deadline}</p>
+          <p className={`text-sm font-semibold ${task.completed ? "text-green-500" : "text-yellow-500"}`}>
+            Status: {task.completed ? "Completed" : "Pending"}
+          </p>
         </div>
-        <div>
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={newTask.description}
-            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-          />
-        </div>
-        <div>
-          <label>Deadline:</label>
-          <input
-            type="date"
-            name="deadline"
-            value={newTask.deadline}
-            onChange={(e) => setNewTask({ ...newTask, deadline: e.target.value })}
-          />
-        </div>
-        <div>
-          <label>Category:</label>
-          <select
-            name="category"
-            value={newTask.category}
-            onChange={(e) => setNewTask({ ...newTask, category: e.target.value })}
+        <div className="mt-2 sm:mt-0 sm:flex sm:space-x-4">
+          {!task.completed && (
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              onClick={() => handleComplete(task.id)}
+            >
+              Mark as Complete
+            </button>
+          )}
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            onClick={() => handleDelete(task.id)}
           >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+            Delete
+          </button>
+          
         </div>
-        <button type="submit">Add Task</button>
-      </form>
+      </li>
+    ))}
+  </ul>
+  <button
+    onClick={handTask}
+      type="submit"
+      className="mt-7 px-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
+    >
+      {addTask ? 'cancel':'add task'}
+    </button>
+{addTask &&  
+<div>
+
+<h3 className="text-xl font-semibold text-gray-800 mt-6">Create a New Task</h3>
+  <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
+    <div className="flex flex-col">
+      <label className="font-medium text-gray-700">Title:</label>
+      <input
+        type="text"
+        name="title"
+        className="mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+        value={newTask.title}
+        onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+        required
+      />
     </div>
+    <div className="flex flex-col">
+      <label className="font-medium text-gray-700">Description:</label>
+      <textarea
+        name="description"
+        className="mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+        value={newTask.description}
+        onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+      />
+    </div>
+    <div className="flex flex-col">
+      <label className="font-medium text-gray-700">Deadline:</label>
+      <input
+        type="date"
+        name="deadline"
+        className="mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+        value={newTask.deadline}
+        onChange={(e) => setNewTask({ ...newTask, deadline: e.target.value })}
+      />
+    </div>
+    <div className="flex flex-col">
+      <label className="font-medium text-gray-700">Category:</label>
+      <select
+        name="category"
+        className="mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+        value={newTask.category}
+        onChange={(e) => setNewTask({ ...newTask, category: e.target.value })}
+      >
+        <option value="">Select Category</option>
+        {categories.map((category) => (
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+    </div>
+    <button
+      type="submit"
+      className="w-full px-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
+    >
+      Add Task
+    </button>
+  </form>
+</div> }
+</div>
+
   );
 };
 
 export default TaskList;
+
+
