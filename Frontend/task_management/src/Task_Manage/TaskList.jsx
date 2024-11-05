@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import api from "./api";
 import { Link } from "react-router-dom";
+import Dashboard from "./UserDashboard";
 const TaskList = () => {
   const [addTask,setAddTask] = useState(false)
   const [tasks, setTasks] = useState([]);
@@ -121,6 +122,7 @@ const TaskList = () => {
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+      <Dashboard/>
       <button onClick={handleChangepage} className="bg-blue-600 w-1/4 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none 
   focus:ring-2 focus:ring-blue-500">
       {changepage ? <Link to="/categorylist">see your category</Link>:<Link to="/tasks">see your task</Link>}
@@ -133,8 +135,8 @@ const TaskList = () => {
         className="p-4 bg-gray-100 rounded-md shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between"
       >
         <div>
-          <h4 className="text-lg font-medium text-gray-900">{task.title}</h4>
-          <p className="text-gray-700">{task.description}</p>
+          <h2 className="text-xl font-bold text-black">{task.title}</h2>
+          <p className="text-gray-700 ">{task.description}</p>
           <p className="text-sm text-gray-600">Category: {task.category}</p>
           <p className="text-sm text-gray-600">Deadline: {task.deadline}</p>
           <p className={`text-sm font-semibold ${task.completed ? "text-green-500" : "text-yellow-500"}`}>

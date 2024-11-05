@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Body = () => {
   return (
     <div className="my-24  p-6 md:p-10 max-w-screen-lg mx-auto text-center font-serif space-y-6">
-      <h4 className="text-xl md:text-2xl  text-gray-600 leading-tight">
+      <h4 className="text-xl md:text-2xl  text-black leading-tight">
       A task management system or website is a digital tool designed to
        help individuals and teams organize, prioritize, and track
         their tasks and projects efficiently. These platforms
