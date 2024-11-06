@@ -76,6 +76,8 @@ const Login = () => {
       .then((response) => {
         localStorage.setItem("access_token", response.data.access);
         localStorage.setItem("refresh_token", response.data.refresh);
+        localStorage.setItem("user_id",response.data.refresh);
+        // console.log("user_id")
         navigate("/tasks"); // Redirect to tasks after successful login
       })
       .catch((error) => {
