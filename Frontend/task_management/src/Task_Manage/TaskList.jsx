@@ -303,18 +303,6 @@ const TaskList = () => {
       });
   };
 
-
-  //const fetchCategories = () => {
-    //     api.get("/categories") 
-    //       .then((response) => {
-    //         setCategories(response.data);
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error fetching categories:", error);
-    //       });
-    //   };
-
-  // Handle new task submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const formattedDeadline = newTask.deadline ? new Date(newTask.deadline).toISOString().split("T")[0] : null;
