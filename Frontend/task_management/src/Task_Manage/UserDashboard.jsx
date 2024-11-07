@@ -1,12 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
-function Dashboard(){
-
-    return(
-        <div className=" text-black font-serif text-xl">
-          <header className="max-w-screen-lg mx-auto flex justify-end md:justify-between items-center p-4 ">
-        
+function Dashboard() {
+  return (
+    <div className=" text-black font-serif text-xl">
+      <header className="max-w-screen-lg mx-auto flex justify-end md:justify-between items-center p-4 ">
         <nav className="flex items-center space-x-4 md:ml-16">
           <ul className="flex space-x-4 md:space-x-16">
             <li>
@@ -40,8 +38,7 @@ function Dashboard(){
         </Link>
       </header>
     </div>
-    )
-
+  );
 }
 
-export default Dashboard
+export default Dashboard;

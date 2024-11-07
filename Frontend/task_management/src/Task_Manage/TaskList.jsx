@@ -251,6 +251,7 @@
 import React, { useState, useEffect } from "react";
 import api from "./api";
 import { Link, useNavigate } from "react-router-dom";
+import CategoryList from "./categorie";
 
 // TaskList component serves as the main dashboard for the user
 const TaskList = () => {
@@ -299,7 +300,7 @@ const TaskList = () => {
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
-        console.log('why')
+      
       });
   };
 
@@ -357,7 +358,7 @@ const TaskList = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("user_id");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -500,8 +501,10 @@ const TaskList = () => {
       )}
 
       {/* Category List View */}
-      {page === "categories" && (
-        <div>
+      {page === "categories" &&  <CategoryList/>}
+        
+        
+        {/* <div>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Category List</h2>
           <ul className="space-y-4">
             {categories.map((category) => (
@@ -511,7 +514,7 @@ const TaskList = () => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

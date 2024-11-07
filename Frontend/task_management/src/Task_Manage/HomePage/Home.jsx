@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Header from "./Header";
 import Body from "./Body";
@@ -10,9 +10,26 @@ import TaskList from "../TaskList";
 import CategoryList from "../categorie";
 
 const Home = () =>{
+const [loggedIn,setIsLoggedIn] = useState(true)
+    useEffect(() => {  
+        const loggedInUser = localStorage.getItem("access_token");
+        if(loggedInUser){
+            setIsLoggedIn(false)
+            console.log('hello')
+        }
+
+        // if (loggedInUser === 'true') {  
+        //     setIsLoggedIn(true);  
+        //     console.log('yes')
+        // } else {  
+        //     setIsLoggedIn(false);  
+        //     console.log('no')
+        // }  
+    }, []);  
     return(
         <Router >
-            <Header/>
+            {loggedIn && <Header/>}
+            
             <Routes>
                 <Route path="/" element={< Body/>}/>
                 <Route path="/about" element={<Body/>}/>
